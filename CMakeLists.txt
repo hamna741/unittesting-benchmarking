@@ -15,17 +15,19 @@ set(CMAKE_CXX_STANDARD 11)
 
 option(BUILD_TESTS "Build unit tests" )
 option(BUILD_BENCHMARKS "Build benchmarks")
-
+add_subdirectory(./src)
 
 if(BUILD_TESTS)
+    
     add_subdirectory(./googletest)
+    add_subdirectory(./unittest)
   
 endif()
 
-# if(BUILD_BENCHMARKS)
-#     add_subdirectory(./src)
-#     add_subdirectory(./benchmark)
-#     add_subdirectory(BENCHMARK)
+if(BUILD_BENCHMARKS)
+  # add_subdirectory(./src)
+    add_subdirectory(./benchmark)
+    add_subdirectory(BENCHMARK)
    
     
-# endif() 
+endif() 
