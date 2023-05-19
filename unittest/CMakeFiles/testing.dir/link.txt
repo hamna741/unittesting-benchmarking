@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/testing.dir/unittest.cpp.o  -o testing  ../lib/libgtest_main.a -lBENCHMARKING_UNITTESTING ../lib/libgtest.a -lpthread 
