@@ -10,7 +10,7 @@ include_directories( /home/hamna/Desktop/myproject/benchmarking_unittesting/incl
 # Unit Tests
 add_executable(tests /home/hamna/Desktop/myproject/benchmarking_unittesting/src/codility.cpp)
 target_link_libraries(tests gtest_main)
-add_executable(runUnitTests ${PROJECT_SOURCE_DIR}/unittest/*.cpp)
+add_executable(runUnitTests ${PROJECT_SOURCE_DIR}/unittest.cpp)
 
 target_link_libraries(runUnitTests project1_lib GTest::gtest_main)
 add_test(NAME UnitTests COMMAND runUnitTests)
