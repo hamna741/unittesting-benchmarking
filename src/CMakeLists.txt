@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
 project(Codility)
 
 # Add the source file
@@ -11,7 +11,7 @@ file(GLOB SRC_FILES ./*.cpp)
 
 ########################################
 add_library(project1_lib ${SRC_FILES})
-add_executable(codility codility.cpp)
+add_executable(codility  ${SRC_FILES})
 
 # Include the include directory
 target_include_directories(codility PUBLIC ../include)
