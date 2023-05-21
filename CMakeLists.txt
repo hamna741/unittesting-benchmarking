@@ -1,17 +1,11 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-
-set(PROJECT_NAME project1)
+set(PROJECT_NAME benchmark_gtest)
 project(${PROJECT_NAME})
-
-
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
 set(CMAKE_CXX_STANDARD 11)
-
-
-
 
 option(BUILD_TESTS "Build unit tests" )
 option(BUILD_BENCHMARKS "Build benchmarks")
@@ -30,4 +24,4 @@ if(BUILD_BENCHMARKS)
     add_subdirectory(BENCHMARK)
    
     
-endif() 
+endif()
