@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "codility.h"
+#include<cassert>
 
 TEST(CodilityTest, BinaryGapTest) {
   EXPECT_EQ(codility::binary_gap(9), 2);
@@ -20,10 +21,10 @@ TEST(CodilityTest, SliceSumTest) {
   EXPECT_EQ(codility::slice_sum(A1), 5);
   
   std::vector<int> A2 {-1, -2, -3, -4, -5};
-  EXPECT_EQ(codility::slice_sum(A2), 0);
+  assert(codility::slice_sum(A2)== 0);
   
   std::vector<int> A3 {1, 2, 3, 4, 5};
-  EXPECT_EQ(codility::slice_sum(A3), 14);
+  assert(codility::slice_sum(A3)== 14);
 
 }
 
