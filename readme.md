@@ -1,15 +1,7 @@
 # UNIT TESTING & BENCHMARKING
 ## GETTING STARTED
-### SETTING UP THE PROJECT
+See [Google Test documentation](https://github.com/google/googletest/blob/main/docs/primer.md) to gain familiarity with the concept.
 
-First, create a directory for your project:
-
-```
-mkdir BENCHMARKING_UNIITESTING && cd BENCHMARKING_UNIITESTING
-```
-
-Create CMakeLists.txt to configure the build system for a project. You’ll use this file to set up your project and declare  GoogleTest and benchmarking dependencies.
- 
 ## PROJECT HIRARCHY
     .
     ├──build
@@ -29,20 +21,70 @@ Create CMakeLists.txt to configure the build system for a project. You’ll use 
     ├──.gitignore
     ├──.gitmodules
     ├──CMakELists.txt
+
+First, create a directory for your project:
+
+```
+mkdir BENCHMARKING_UNIITESTING && cd BENCHMARKING_UNIITESTING
+```
+
+
+ 
+### TOP LEVEL CMAKE FILE
+The top level CMakeListst.txt file defines complilation flags and option to run unit tst or benchmark seperatly.
+
+```
+
+cmake_minimum_required(VERSION 3.16)
+
+set(PROJECT_NAME benchmark_gtest)
+project(${PROJECT_NAME})
+
+set(CMAKE_CXX_FLAGS "-g -Wall")
+set(CMAKE_CXX_STANDARD 11)
+
+option(BUILD_TESTS "Build unit tests" )
+option(BUILD_BENCHMARKS "Build benchmarks")
+add_subdirectory(./src)
+
+if(BUILD_TESTS)
+    
+    add_subdirectory(./googletest)
+    add_subdirectory(./unittest)
+  
+endif()
+
+if(BUILD_BENCHMARKS)
+  # add_subdirectory(./src)
+    add_subdirectory(./benchmark)
+    add_subdirectory(BENCHMARK)
+   
+    
+endif()
+```
+
+Create CMakeLists.txt to configure the build system for a project. You’ll use this file to set up your project and declare  GoogleTest and benchmarking dependencies.
 ## RUNING UNIT TESTS
+execute the command ``` cmake -DBUILD_UNITTESTS=ON ..``` to build test and execute  ```ctest```  to run binary. Alternatively, ```./unittest/runUnitTests``` to do so.
+### OUTPUT
+```
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from CodilityTest
+[ RUN      ] CodilityTest.BinaryGapTest
+[       OK ] CodilityTest.BinaryGapTest (0 ms)
+[ RUN      ] CodilityTest.FrogJumpTest
+[       OK ] CodilityTest.FrogJumpTest (0 ms)
+[ RUN      ] CodilityTest.SliceSumTest
+/home/hamna/Desktop/myproject/benchmarking_unittesting/unittest/unittest.cpp:21: Failure
+Expected equality of these values:
+  codility::slice_sum(A1)
+    Which is: 6
+  5
 
-[Building Benchmarks](#building-benchmarks)
-
-[Running Benchmarks](#running-benchmarks)
-
-[Output Formats](#output-formats)
-
-[Output Files](#output-files)
-
-
-
-
-
+runUnitTests: /home/hamna/Desktop/myproject/benchmarking_unittesting/unittest/unittest.cpp:27: virtual void CodilityTest_SliceSumTest_Test::TestBody(): Assertion `codility::slice_sum(A3)== 14' failed.
+Aborted (core dumped)
+```
 
 
 ## Building Benchmarks
@@ -268,20 +310,3 @@ For json formated code with results written in file
 ```
 
 
-To get started, see [Requirements](#requirements) and
-[Installation](#installation). See [Usage](#usage) for a full example and the
-[User Guide](docs/user_guide.md) for a more comprehensive feature overview.
-
-It may also help to read the [Google Test documentation](https://github.com/google/googletest/blob/main/docs/primer.md)
-as some of the structural aspects of the APIs are similar.
-## Requirements
-
-The library can be used with C++03. However, it requires C++11 to build,
-including compiler and standard library support.
-
-The following minimum versions are required to build the library:
-
-* GCC 4.8
-* Clang 3.4
-* Visual Studio 14 2015
-* Intel 2015 Update 1
