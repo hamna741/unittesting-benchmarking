@@ -1,7 +1,7 @@
 #include <benchmark/benchmark.h>
 #include "codility.h"
 #include <random>
-#include <string>
+
 
 int generateBinaryInput(int N)
 {
@@ -38,21 +38,18 @@ static void BM_FrogJump(benchmark::State &state)
 
 static void BM_SliceSum(benchmark::State &state)
 {
-    std::vector<int> A = {1, -2, 3, 4, -5, 0, 7};
+
+  std::vector<int> A(state.range(0), 1);
 
     for (auto _ : state)
     {
         codility::slice_sum(A);
     }
+
 }
 
-// Define additional benchmark functions for other functions in codility.cpp if needed
-
-// Run the benchmark functions
 BENCHMARK(BM_BinaryGap)->Range(1,1<<10)->Complexity(benchmark::oAuto);
 BENCHMARK(BM_FrogJump);
-BENCHMARK(BM_SliceSum);
-// Add more benchmarks if needed
+BENCHMARK(BM_SliceSum)->Range(10, 10000);
 
-// Run the benchmark
 BENCHMARK_MAIN();
