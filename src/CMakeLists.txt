@@ -3,14 +3,14 @@ project(Codility)
 
 # Add the source file
 
-include_directories( /home/hamna/Desktop/myproject/benchmarking_unittesting/include)
+include_directories( ${${CMAKE_BINARY_DIR}}/include)
 
 
 file(GLOB SRC_FILES ./*.cpp)
 
 
-########################################
-add_library(project1_lib ${SRC_FILES})
+
+add_library(cod_library ${SRC_FILES})
 add_executable(codility  ${SRC_FILES})
 
 # Include the include directory
