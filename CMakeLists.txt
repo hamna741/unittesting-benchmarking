@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-set(PROJECT_NAME benchmark_gtest)
+set(PROJECT_NAME project1)
 project(${PROJECT_NAME})
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 option(BUILD_TESTS "Build unit tests" )
 option(BUILD_BENCHMARKS "Build benchmarks")
+include_directories( /home/hamna/Desktop/myproject/benchmarking_unittesting/include)
 add_subdirectory(./src)
 
 if(BUILD_TESTS)
@@ -19,9 +20,9 @@ if(BUILD_TESTS)
 endif()
 
 if(BUILD_BENCHMARKS)
-  # add_subdirectory(./src)
+  
     add_subdirectory(./benchmark)
-    add_subdirectory(BENCHMARK)
+    add_subdirectory(./BENCHMARK)
    
     
 endif()
