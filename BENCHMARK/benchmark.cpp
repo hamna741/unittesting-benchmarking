@@ -1,26 +1,20 @@
 #include <benchmark/benchmark.h>
 #include "codility.h"
 #include <random>
+#include<iostream>
 
 
-int generateBinaryInput(int N)
-{
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dis(0, (1 << N) - 1);
-
-    return dis(gen);
-}
 static void BM_BinaryGap(benchmark::State &state)
 {
-   
+  
     for (auto _ : state)
     {
          int N = state.range(0);
-        int input =generateBinaryInput(N);
-        codility::binary_gap(input);
+        
+       
+        codility::binary_gap(N);
     }
-    state.SetComplexityN(state.range(0));
+ 
 }
 
 static void BM_FrogJump(benchmark::State &state)
@@ -40,7 +34,7 @@ static void BM_SliceSum(benchmark::State &state)
 {
 
   std::vector<int> A(state.range(0), 1);
-
+ 
     for (auto _ : state)
     {
         codility::slice_sum(A);
@@ -48,7 +42,7 @@ static void BM_SliceSum(benchmark::State &state)
 
 }
 
-BENCHMARK(BM_BinaryGap)->Range(1,1<<10)->Complexity(benchmark::oAuto);
+BENCHMARK(BM_BinaryGap)->RangeMultiplier(3)->Range(1,1<<10)->Complexity(benchmark::oAuto);
 BENCHMARK(BM_FrogJump);
 BENCHMARK(BM_SliceSum)->Range(10, 10000);
 
