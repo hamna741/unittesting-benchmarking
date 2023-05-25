@@ -1,7 +1,6 @@
 #include <benchmark/benchmark.h>
 #include "codility.h"
-#include <random>
-#include<iostream>
+
 
 
 static void BM_BinaryGap(benchmark::State &state)
@@ -44,6 +43,6 @@ static void BM_SliceSum(benchmark::State &state)
 
 BENCHMARK(BM_BinaryGap)->RangeMultiplier(3)->Range(1,1<<10)->Complexity(benchmark::oAuto);
 BENCHMARK(BM_FrogJump);
-BENCHMARK(BM_SliceSum)->Range(10, 10000);
+BENCHMARK(BM_SliceSum)->Range(10, 10000)->Complexity(benchmark::oAuto);
 
 BENCHMARK_MAIN();
